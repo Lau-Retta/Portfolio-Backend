@@ -24,6 +24,8 @@ public class Persona {
      
     private String img;
     
+    private String banner;
+    
     private String descripcion;
     
     private String linkedin;

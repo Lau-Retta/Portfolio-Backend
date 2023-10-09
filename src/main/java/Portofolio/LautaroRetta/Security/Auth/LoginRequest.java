@@ -14,6 +14,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor // Nos permite que si luego agremos un nuevo atributo no es necesario ccrear los getter y setter ni los contrucxtores
 @NoArgsConstructor
 public class LoginRequest {
-    String username;
+    String email;
     String password; 
 }

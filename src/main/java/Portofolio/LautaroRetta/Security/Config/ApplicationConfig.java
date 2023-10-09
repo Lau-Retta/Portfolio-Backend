@@ -51,7 +51,10 @@ public class ApplicationConfig {
         //accede al usuario para eso lo buscamos con el metodo en el repository
         //y si no se encuentra lanza una exeption
         return username -> userRepository.findByUsername(username)
+                
         .orElseThrow(()-> new UsernameNotFoundException("User not fournd"));
+        
     }
+    
 
 }

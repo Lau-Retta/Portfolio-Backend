@@ -32,11 +32,11 @@ public class AuthService {
     public AuthResponse login(LoginRequest request) {
 
         //utilizamos el metodo autenticate, recibe el la contraseña y el ususrio
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
         //2°debemo traer un oibjeto UserDetails y utizamos
-        UserDetails user = userRepository.findByUsername(request.getUsername()).orElseThrow();
+        UserDetails user = userRepository.findByUsername(request.getEmail()).orElseThrow();
 
-        User userPrincipal = userRepository.findByUsername(request.getUsername()).orElseThrow();
+        User userPrincipal = userRepository.findByUsername(request.getEmail()).orElseThrow();
         //generamos el token con el servicio jwt y el objeto user 
         String token = jwtService.getToken(user);
         //retornamos el token
@@ -52,7 +52,7 @@ public class AuthService {
         User user = User.builder()
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .email(request.getEmail())
+                .username(request.getUsername())
                 .role(Role.User)
                 .build();
         //le pasamos el usuario al repositor1590io para que lo guarde

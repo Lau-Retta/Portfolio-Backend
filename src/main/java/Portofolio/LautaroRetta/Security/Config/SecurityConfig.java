@@ -32,14 +32,11 @@ public class SecurityConfig {
     //consiguramos los endpoint publicos de los que estan proitegidos
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .csrf(csrf
-                        -> csrf
-                        .disable())
-                .cors(cors -> cors.configurationSource(request ->new CorsConfiguration().applyPermitDefaultValues()))
+                .cors().and() // Habilita la configuración CORS
+                .csrf().disable() // Deshabilita CSRF
                 //la proteccion Cross-Site Request Forgery es una medida de seguridad se utiliza para agregar
                 //a los peticiones post una autenticacion bsada en un token csrf, pero como vamos a usar un token jwt lo desactivamos
                 .authorizeHttpRequests(authRequest
-                        
                         -> authRequest
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET).permitAll()
@@ -65,7 +62,7 @@ public class SecurityConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:4200")
+                        .allowedOrigins("http://localhost:4200/")
                         .allowedMethods()
                         .maxAge(3600);
             }
