@@ -32,7 +32,7 @@ public class ExperienciaController {
         return new ResponseEntity(exp_list, HttpStatus.OK);
     }
 
-    @GetMapping("Trabajos/traer/{id}")
+    @GetMapping("/traer/{id}")
     public Experiencia findExperiencia(@PathVariable int id){
         return iexperienciaService.findExperiencia(id);
     }
