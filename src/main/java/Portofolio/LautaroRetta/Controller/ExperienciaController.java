@@ -48,14 +48,18 @@ public class ExperienciaController {
             return new ResponseEntity(new Mensaje("La empresa no puede esta vacio"), HttpStatus.BAD_REQUEST);
         }    
         if(iexperienciaService.existByEmpresa(dtoexp.getEmpresa())){
-            return new ResponseEntity(new Mensaje("Esa experiencia no existe"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("Esa experiencia ya existe"), HttpStatus.BAD_REQUEST);
         }
-        Experiencia experiencia = new Experiencia(dtoexp.getEmpresa(), dtoexp.getDescripcion(), dtoexp.getInicio(),
-        dtoexp.getFin(),dtoexp.getImg_Empresa(), dtoexp.getUrl_info());
+         System.out.println("esta es el fin:"+dtoexp.getFin());
+        Experiencia experiencia = new Experiencia(dtoexp.getEmpresa(), dtoexp.getDescripcion(),
+                dtoexp.getImg_empresa(), dtoexp.getInicio(),dtoexp.getFin(),dtoexp.getUrl_info());
+       
+        
+        
         iexperienciaService.saveExperiencia(experiencia);
         
         
-        return new ResponseEntity(new Mensaje("Esperiencia añadida"), HttpStatus.OK);
+        return new ResponseEntity(new Mensaje("Experiencia añadida"), HttpStatus.OK);
          
     }
    
@@ -84,7 +88,7 @@ public class ExperienciaController {
         exp.setDescripcion(dtoexp.getDescripcion());
         exp.setInicio(dtoexp.getInicio());
         exp.setFin(dtoexp.getFin());
-        exp.setImg_empresa(dtoexp.getImg_Empresa());
+        exp.setImg_empresa(dtoexp.getImg_empresa());
         exp.setUrl_info(dtoexp.getUrl_info());
         
         

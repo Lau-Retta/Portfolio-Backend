@@ -32,7 +32,7 @@ public class Experiencia {
     @Size(min = 1, max = 50, message = "No cumple con la longitud")
     private String inicio;
     
-    @NotNull
+   
     @Size(min = 1, max = 50, message = "No cumple con la longitud")
     private String fin;
     
@@ -45,13 +45,13 @@ public class Experiencia {
     public Experiencia(){}
     //Constructor
     public Experiencia(String Empresa, String Descripcion, String img_empresa,String Inicio, 
-          String Fin, String url_info )
+          String fin, String url_info )
     {
         this.empresa = Empresa;
         this.descripcion = Descripcion;
         this.img_empresa = img_empresa;
         this.inicio = Inicio;
-        this.fin = Fin;
+        this.fin = fin;
         this.url_info= url_info;
     }
     //GETTERS & SETTERS

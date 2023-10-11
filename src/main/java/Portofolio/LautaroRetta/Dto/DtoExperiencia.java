@@ -11,18 +11,13 @@ import lombok.Setter;
 @Getter  @Setter
 public class DtoExperiencia {
      private String empresa;
-    
-    @NotBlank
+@NotBlank
     private String descripcion;
-    
-   
-    private String img_Empresa;
-    
-    @NotBlank
-   
+ 
+    private String img_empresa;
+
     private String inicio;
     
-    @NotBlank
     private String fin;
     
     private String url_info;
@@ -30,13 +25,13 @@ public class DtoExperiencia {
     //Constructor vacio
     public DtoExperiencia(){}
     //Constructor
-    public DtoExperiencia(String Empresa, String Descripcion, String Img_Empresa,String Inicio, 
-          String Fin, String url_info ){
-        this.empresa = Empresa;
-        this.descripcion = Descripcion;
-        this.img_Empresa = Img_Empresa;
-        this.inicio = Inicio;
-        this.fin = Fin;
+    public DtoExperiencia(String empresa, String descripcion, String img_empresa,String inicio, 
+          String fin, String url_info ){
+        this.empresa = empresa;
+        this.descripcion = descripcion;
+        this.img_empresa = img_empresa;
+        this.inicio = inicio;
+        this.fin = fin;
         this.url_info = url_info;
     }
 }
