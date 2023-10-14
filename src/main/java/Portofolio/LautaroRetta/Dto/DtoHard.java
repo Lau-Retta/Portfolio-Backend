@@ -8,14 +8,14 @@ public class DtoHard {
     @NotBlank
     private int nivel;
     @NotBlank
-    private String hablidad;
+    private String habilidad;
     
     //vacio
     public DtoHard(){}
     //constructor
     public DtoHard(int nivel, String hablidad) {
         this.nivel = nivel;
-        this.hablidad = hablidad;
+        this.habilidad = hablidad;
     }
 
     public int getNivel() {
@@ -26,11 +26,11 @@ public class DtoHard {
         this.nivel = nivel;
     }
 
-    public String getHablidad() {
-        return hablidad;
+    public String getHabilidad() {
+        return habilidad;
     }
 
-    public void setHablidad(String hablidad) {
-        this.hablidad = hablidad;
+    public void setHabilidad(String hablidad) {
+        this.habilidad = hablidad;
     }
 }

@@ -42,16 +42,18 @@ public class HardController {
 
     @PostMapping("/crear")
     public ResponseEntity<?> create(@RequestBody DtoHard dtohard) {
-
+        System.out.println(dtohard.getHabilidad());
         //comprobamos que no este vacio, si es true se le dev el mensaje
-        if (StringUtils.isBlank(dtohard.getHablidad())) {
+        if (StringUtils.isBlank(dtohard.getHabilidad())) {
             return new ResponseEntity(new Mensaje("La habilidad no puede esta vacio"), HttpStatus.BAD_REQUEST);
         }
-        if (ihardService.existByHabilidad(dtohard.getHablidad())) {
-            return new ResponseEntity(new Mensaje("Esa Hard no existe"), HttpStatus.BAD_REQUEST);
+        if (ihardService.existByHabilidad(dtohard.getHabilidad())) {
+            return new ResponseEntity(new Mensaje("Esa Hard ya existe"), HttpStatus.BAD_REQUEST);
         }
-        Hard Hard = new Hard();
-        ihardService.saveHabilidad(Hard);
+        Hard hard = new Hard();
+        hard.setHabilidad(dtohard.getHabilidad());
+        hard.setNivel(dtohard.getNivel());
+        ihardService.saveHabilidad(hard);
 
         return new ResponseEntity(new Mensaje("Hard añadida"), HttpStatus.OK);
 
@@ -67,18 +69,18 @@ public class HardController {
 
         /*Validadmos si la Hard que se quiere ingresar al editar ya exista, si ya existe se retorna
         el mensaje*/
-        if (ihardService.existByHabilidad(dtohard.getHablidad())
-                && ihardService.getHabilidad(dtohard.getHablidad()).get().getId() != id) {
-            return new ResponseEntity(new Mensaje("Ese Intstituto ya no existe"), HttpStatus.BAD_REQUEST);
+        if (ihardService.existByHabilidad(dtohard.getHabilidad())
+                && ihardService.getHabilidad(dtohard.getHabilidad()).get().getId() != id) {
+            return new ResponseEntity(new Mensaje("Ese ya no existe"), HttpStatus.BAD_REQUEST);
         }
         /*Validamos si el nombre de la Intstituto no quedo en blanco*/
-        if (StringUtils.isBlank(dtohard.getHablidad())) {
+        if (StringUtils.isBlank(dtohard.getHabilidad())) {
             return new ResponseEntity(new Mensaje("El Intstituto esta en blanco"), HttpStatus.BAD_REQUEST);
         }
 
         Hard exp = ihardService.getOne(id).get();
         exp.setNivel(dtohard.getNivel());
-        exp.setHabilidad(dtohard.getHablidad());
+        exp.setHabilidad(dtohard.getHabilidad());
 
         ihardService.saveHabilidad(exp);
         return new ResponseEntity(new Mensaje("Hard actualizada"), HttpStatus.OK);
