@@ -41,7 +41,7 @@ public class SoftController {
 
     @PostMapping("/crear")
     public ResponseEntity<?> create(@RequestBody DtoSoft dtoSoftSkills) {
-
+        System.out.println();
         //comprobamos que no este vacio, si es true se le dev el mensaje
         if (StringUtils.isBlank(dtoSoftSkills.getHabilidad())) {
             return new ResponseEntity(new Mensaje("La habilidad no puede esta vacio"), HttpStatus.BAD_REQUEST);
@@ -50,6 +50,7 @@ public class SoftController {
             return new ResponseEntity(new Mensaje("Esa SoftSkills no existe"), HttpStatus.BAD_REQUEST);
         }
         SoftSkills softSkills = new SoftSkills();
+        softSkills.setHabilidad(dtoSoftSkills.getHabilidad());
         isoftservice.saveHabilidad(softSkills);
 
         return new ResponseEntity(new Mensaje("SoftSkills añadida"), HttpStatus.OK);
