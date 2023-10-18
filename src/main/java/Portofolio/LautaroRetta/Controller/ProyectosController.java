@@ -48,8 +48,12 @@ public class ProyectosController {
         if (iproyectoService.existByNombre_p(dtoProyecto.getNombre())) {
             return new ResponseEntity(new Mensaje("Ese Proyecto no existe"), HttpStatus.BAD_REQUEST);
         }
-        Proyectos Proyecto = new Proyectos();
-        iproyectoService.saveProyecto(Proyecto);
+        Proyectos proyecto = new Proyectos();
+        proyecto.setNombre(dtoProyecto.getNombre());
+        proyecto.setDescripcion(dtoProyecto.getDescripcion());
+        proyecto.setIma_proyecto(dtoProyecto.getIma_proyecto());
+        proyecto.setUrl(dtoProyecto.getUrl() );
+        iproyectoService.saveProyecto(proyecto);
 
         return new ResponseEntity(new Mensaje("Proyecto añadida"), HttpStatus.OK);
 
@@ -92,6 +96,6 @@ public class ProyectosController {
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
         }
         iproyectoService.deleteProyecto(id);
-        return new ResponseEntity(new Mensaje("La Habilidad fue eliminada"), HttpStatus.OK);
+        return new ResponseEntity(new Mensaje("El proyecto fue eliminado"), HttpStatus.OK);
     }
 }

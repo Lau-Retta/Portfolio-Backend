@@ -67,6 +67,7 @@ public class PersonaController {
 
         // ...
 // 2° cambia los valores de esa Persona por los nuevos
+        System.out.println(request.getImg());
         persona.setNombre(request.getNombre());
         persona.setApellido(request.getApellido());
         persona.setImg(request.getImg());// Debería ser setImg
